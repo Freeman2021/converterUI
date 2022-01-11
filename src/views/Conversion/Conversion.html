@@ -1,0 +1,80 @@
+<v-container fluid>
+  <v-col cols="12" align-self="center">
+    <v-row justify="center">
+      <v-card flat class="px-0">
+        <div class="text-h4 text-center">
+          Конвертер
+        </div>
+        <v-card-text>
+          <v-form
+            ref="form"
+            v-model="valid"
+            lazy-validation
+          >
+            <v-row dense>
+              <v-col cols="6">
+                <v-select
+                  dense
+                  :items="currencies"
+                  label="Выберите валюту"
+                  outlined
+                  item-text="name"
+                  item-value="charCode"
+                  v-model="currencyFrom"
+                >
+                  <template v-slot:item="{ item }">
+                    <span class="mr-2 font-weight-bold">{{item.charCode}}</span>
+                    <span>{{item.name}}</span>
+                  </template>
+                </v-select>
+              </v-col>
+              <v-col cols="6">
+                <v-select
+                  dense
+                  :items="currencies"
+                  label="Выберите валюту"
+                  outlined
+                  item-text="name"
+                  item-value="charCode"
+                  v-model="currencyTo"
+                >
+                  <template v-slot:item="{ item }">
+                    <span class="mr-2 font-weight-bold">{{item.charCode}}</span>
+                    <span>{{item.name}}</span>
+                  </template>
+                </v-select>
+              </v-col>
+            </v-row>
+            <v-row dense>
+              <v-col cols="6">
+                <v-text-field
+                  dense
+                  outlined
+                  label="Исходная валюта"
+                  v-model="courseFrom"
+                  type="number"
+                />
+              </v-col>
+              <v-col cols="6">
+                <v-text-field
+                  disabled
+                  dense
+                  outlined
+                  label="Целевая валюта"
+                  v-model="courseTo"
+                  type="number"
+                />
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-row justify="center">
+          <v-col align-self="center" cols="7">
+            <v-btn @click="submit" color="primary" block class="mb-5">Конвертировать</v-btn>
+            <v-btn :to="{ name: 'History' }" block>История</v-btn>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-row>
+  </v-col>
+</v-container>
